@@ -1,0 +1,2 @@
+// Type code
+Peremens = {}
