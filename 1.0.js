@@ -10,6 +10,8 @@ TypeCommands = {
   "if else": function(b, c, e) { if (b) { eval(RunTypeCode(c)) } else { eval(RunTypeCode(e)) } },
   "eval": function(c) { eval(RunTypeCode(c)) },
   "return": function(z) { return z },
+  "const": function(n, z) { const Peremens[n] = z },
+  "json": function(p, e, z) { Peremens[p] = eval(`Peremens[p].${e} = ${z}; Peremens[p]`) }
 }
 TypeReporters = {
   "text": function(t) { return t },
@@ -19,4 +21,9 @@ TypeReporters = {
   "eval": function(c) { eval(RunTypeCode(c)) },
   "typeof": function(t) { return typeof t },
   "var": function(n) { return Peremens[n] },
+  "new string": function() { return '' },
+  "new number": function() { return 0 },
+  "new array": function() { return [] },
+  "new object": function() { return {} },
+  "json": function(p, e) { return eval(`return Peremens[p].${e}`) }
 }
