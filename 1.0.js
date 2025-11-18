@@ -18,4 +18,5 @@ TypeReporters = {
   ">": function(a, b) { return a > b },
   "eval": function(c) { eval(RunTypeCode(c)) },
   "typeof": function(t) { return typeof t },
+  "var": function(n) { return Peremens[n] }
 }
