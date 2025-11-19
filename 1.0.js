@@ -13,7 +13,7 @@ TypeCommands = {
   "const": function(n, z) { const Peremens[n] = z },
   "json": function(p, e, z) { Peremens[p] = eval(`Peremens[p].${e} = ${z}; Peremens[p]`) },
   "for": function(e, c) { for(e) { RunTypeCode(c) } },
-  "while": function(i, c) { while (i) { RunTypeCode(c) } }
+  "while": function(i, c) { while (i) { RunTypeCode(c) } },
 }
 TypeReporters = {
   "text": function(t) { return t },
@@ -30,5 +30,8 @@ TypeReporters = {
   "json": function(p, e) { return eval(`return Peremens[p].${e}`) },
   "true": function() { return true },
   "false": function() { return false },
-  "not": function(b) { return !b }
+  "not": function(b) { return !b },
+  "<=": function(a, b) { return a <= b },
+  ">=": function(a, b) { return a >= b },
+  "and": function(a, b) { return a && b },
 }
