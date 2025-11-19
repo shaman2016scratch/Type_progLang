@@ -1,5 +1,6 @@
 // Type code
 Peremens = {}
+TypeData = {}
 TypeCommands = {
   "console.log": function(c) { console.log(GetTypeReporter(c)) },
   "console.error": function(c) { console.error(GetTypeReporter(c)) },
@@ -14,6 +15,7 @@ TypeCommands = {
   "json": function(p, e, z) { Peremens[GetTypeReporter(p)] = eval(`Peremens[${GetTypeReporter(p)}].${GetTypeReporter(e)} = ${GetTypeReporter(z)}`) },
   "for": function(e, c) { for(GetTypeReporter(e)) { RunTypeCode(GetTypeReporter(c)) } },
   "while": function(i, c) { while (GetTypeReporter(i)) { RunTypeCode(GetTypeReporter(c)) } },
+  "Sys": function(c) { TypeLang.sys = {}; i++; TypeLang.sys.code = TypeSysFunc['let a sys()'](TypeLang.command); for(TypeLang.sys.i = 0; TypeLang.sys.i < TypeLang.sys.code.length; TypeLang.sys.i++) { TypeLang.sys.command = TypeLang.sys.code[TypeLang.sys.i]; eval(`TypeSysCommands.${TypeLang.sys.command}`); } }
 }
 TypeReporters = {
   "text": function(t) { return t },
@@ -35,20 +37,45 @@ TypeReporters = {
   ">=": function(a, b) { return a >= b },
   "and": function(a, b) { return a && b },
 }
+TypeSysCommands = {
+  "#name": function(n) { TypeData.name = n },
+  "#agent": function(a) { TypeData.agent = a },
+  "#pass": function(p) { TypeData.pass = p },
+  "#programm": function(p) {
+    TypeData.program = {}; TypeData.program.sys = {}; TypeData.program.sys.code = p.split("%");
+    for(TypeData.program.sys.i; TypeData.program.sys.i < TypeData.program.sys.code.length; TypeData.program.sys.i++) {
+      TypeData.program.sys.command = TypeData.program.sys.code[TypeData.program.sys.i]
+      eval(`TypeSysProgrammCommands.${TypeData.programm.sys.command}`)
+    }
+  },
+}
+TypeData.programm = {}
+TypeSysProgrammCommands = {
+  "#name": function(n) { TypeData.programm.name = n },
+  "#agent": function(a) { TypeData.programm.agent = a },
+  "#version": function(v) { TypeData.programm.version = v },
+  "#creator": function(n) { TypeData.programm.creator = n },
+}
 function RunTypeCode(c) {
   TypeLang = {}
   codeType = c.split("@;")
   TypeSysFunc = {
     "let a main()": function(c) { return c.split(";") },
+    "let a sys()": function(c) { return c.split("$") }
   }
   for(i = 0; i < codeType.length; i++) {
     TypeLang.command = codeType[i]
     if (TypeLang.command === 'let a main(type)') {
       TypeLang.main = {}; i++; TypeLang.main.code = TypeSysFunc['let a main()'](TypeLang.command)
       for(TypeLang.main.i = 0; TypeLang.main.i < TypeLang.main.code.length; TypeLang.main.i++) {
-        i++
-        TypeLang.main.command = TypeLang.mian.code[TypeLang.main.i]
+        TypeLang.main.command = TypeLang.main.code[TypeLang.main.i]
         eval(`TypeCommands.${TypeLang.main.command}`)
+      }
+    } else if (TypeLang.command === 'let a sys()') {
+      TypeLang.sys = {}; i++; TypeLang.sys.code = TypeSysFunc['let a sys()'](TypeLang.command);
+      for(TypeLang.sys.i = 0; TypeLang.sys.i < TypeLang.sys.code.length; TypeLang.sys.i++) {
+        TypeLang.sys.command = TypeLang.sys.code[TypeLang.sys.i]
+        eval(`TypeSysCommands.${TypeLang.sys.command}`)
       }
     }
   }
