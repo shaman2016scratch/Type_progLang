@@ -1,6 +1,7 @@
 // Type code
 Peremens = {}
 TypeData = {}
+TypeOut = document.getElementById('root')
 TypeCommands = {
   "console.log": function(c) { console.log(GetTypeReporter(c)) },
   "console.error": function(c) { console.error(GetTypeReporter(c)) },
