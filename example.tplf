@@ -1,1 +1,2 @@
-
+let a main(type)@;
+console_log(text('Привет'));
