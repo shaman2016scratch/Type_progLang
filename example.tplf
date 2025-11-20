@@ -1,2 +1,7 @@
 let a main(type)@;
 console_log(text('Привет'));
+let a sys()@;
+#name('User')$
+#agent('App-type agent://User')$
+#pass('Example Type Code')$
+#programm('#name("app")%#agent("app-type agent://app")%#version("1.0")%#creator("SHAMAN2016")%')$
