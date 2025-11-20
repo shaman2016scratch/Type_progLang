@@ -82,3 +82,24 @@ function RunTypeCode(c) {
 function GetTypeReporter(r) {
   return eval(`TypeReporters.${r}`)
 }
+function processTypeCodeScripts() {
+  const typeCodeScripts = document.querySelectorAll('script[type="text/Type-Programm"]');
+  typeCodeScripts.forEach(scriptElement => {
+    if (scriptElement.src) {
+      fetch(scriptElement.src)
+        .then(response => response.text())
+        .then(codeText => {
+          RunTypeCode(codeText);
+        })
+        .catch(error => {
+          console.error('Ошибка загрузки кода яыка программирования Type:', error);
+        });
+    } else {
+      const codeText = scriptElement.textContent;
+      RunTypeCode(codeText);
+    }
+  });
+}
+document.addEventListener('DOMContentLoaded', () => {
+  processTypeCodeScripts();
+});
