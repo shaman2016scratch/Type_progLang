@@ -1,7 +1,5 @@
 // Type code
-Peremens = {}
-TypeData = {}
-TypeOut = document.getElementById('root')
+Peremens = {}; TypeData = {}; TypeOut = document.getElementById('root'); TypeData.program; TypeOutHead = document.getElementById('head'); TypeOutTitle = document.getElementById('title');
 TypeCommands = {
   "console.log": function(c) { console.log(GetTypeReporter(c)) },
   "console.error": function(c) { console.error(GetTypeReporter(c)) },
@@ -46,7 +44,7 @@ TypeSysCommands = {
     TypeData.program = {}; TypeData.program.sys = {}; TypeData.program.sys.code = p.split("%");
     for(TypeData.program.sys.i; TypeData.program.sys.i < TypeData.program.sys.code.length; TypeData.program.sys.i++) {
       TypeData.program.sys.command = TypeData.program.sys.code[TypeData.program.sys.i]
-      eval(`TypeSysProgrammCommands.${TypeData.programm.sys.command}`)
+      eval(`TypeSysProgrammCommands.${TypeData.program.sys.command}`)
     }
   },
 }
