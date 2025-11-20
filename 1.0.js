@@ -1,9 +1,9 @@
 // Type code
 Peremens = {}; TypeData = {}; TypeOut = document.getElementById('root'); TypeData.program; TypeOutHead = document.getElementById('head'); TypeOutTitle = document.getElementById('title');
 TypeCommands = {
-  "console.log": function(c) { console.log(GetTypeReporter(c)) },
-  "console.error": function(c) { console.error(GetTypeReporter(c)) },
-  "console.warn": function(c) { console.warn(GetTypeReporter(c)) },
+  "console_log": function(c) { console.log(GetTypeReporter(c)) },
+  "console_error": function(c) { console.error(GetTypeReporter(c)) },
+  "console_warn": function(c) { console.warn(GetTypeReporter(c)) },
   "let": function(n, z) { let Peremens[GetTypeReporter(n)] = GetTypeReporter(z) },
   "var": function(n, z) { Peremens[GetTypeReporter(n)] = GetTypeReporter(z) },
   "if": function(b, c) { if (b) { eval(RunTypeCode(GetTypeReporter(c))) } },
